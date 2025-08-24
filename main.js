@@ -1,0 +1,48 @@
+let isDarkMode = false;
+let isAudioPlaying = true;
+
+const swipeImg = document.getElementById('img');
+const muteImg = document.getElementById("img2");
+const audio = document.getElementById("myAudio");
+const downloadBtn = document.getElementById("charge");
+const sound = document.getElementById("loading");
+const moode = document.getElementById("moode");
+
+// **************************************************
+
+function chengemoode() {
+  document.body.classList.toggle('dark-moode');
+  isDarkMode = document.body.classList.contains('dark-moode');
+
+  if (isDarkMode) {
+    swipeImg.src = "./imgs/sun-fog-svgrepo-com.svg";
+    moode.play();
+  } else {
+    swipeImg.src = "./imgs/moon-fog-svgrepo-com.svg";
+    sound.play();
+    moode.pause();
+    moode.currentTime = 0;
+  }
+}
+
+function audiomoode() {
+  if (isAudioPlaying) {
+    audio.pause();
+    muteImg.src = "./imgs/sound-min-svgrepo-com.svg";
+  } else {
+    audio.play();
+    muteImg.src = "./imgs/sound-max-svgrepo-com.svg";
+  }
+  isAudioPlaying = !isAudioPlaying;
+}
+
+function charging() {
+  downloadBtn.textContent = "جار التحميل...";
+  sound.play();
+
+  setTimeout(() => {
+    downloadBtn.textContent = "التحميل من هنا";
+  }, 2000); 
+}
+
+  
